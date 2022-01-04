@@ -91,6 +91,13 @@
       "kor": "컵",
       "isDone": false,
       "id": 12
+    },
+    {
+      "day": "1",
+      "eng": "guitar",
+      "kor": "기타",
+      "isDone": false,
+      "id": 13
     }
   ]
 }

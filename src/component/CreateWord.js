@@ -1,32 +1,37 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from "../hooks/useFetch";
 
 function CreateWord(){
   const days = useFetch("http://localhost:3001/days");
   const naviagte = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
 
   function onSubmit(e){
     e.preventDefault();
 
-    fetch(`http://localhost:3001/words/`, {
-      method : 'POST',
-      headers : {
-        'Content-Type' : 'application/json',
-      },
-      body : JSON.stringify({
-        day : dayRef.current.value,
-        eng : engRef.current.value,
-        kor : korRef.current.value,
-        isDone : false,
-      }),
-    })
-    .then(res => {
-      if(res.ok){
-        alert("Added");
-        naviagte(`/day/${dayRef.current.value}`);
-      }
-    })
+    if(!isLoading){
+      setIsLoading(true);
+      fetch(`http://localhost:3001/words/`, {
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json',
+        },
+        body : JSON.stringify({
+          day : dayRef.current.value,
+          eng : engRef.current.value,
+          kor : korRef.current.value,
+          isDone : false,
+        }),
+      })
+      .then(res => {
+        if(res.ok){
+          alert("Added");
+          naviagte(`/day/${dayRef.current.value}`);
+          setIsLoading(false);
+        }
+      })
+    }
   };
 
   //use useRef to access the dom. ex) check the scroll, focus...
@@ -54,7 +59,9 @@ function CreateWord(){
           ))}
         </select>
       </div>
-      <button>Save</button>
+      <button
+        style={{opacity: isLoading ? 0.3 : 1}}
+      >{isLoading ? "Saving..." : "Save"}</button>
     </form>
   )
 };
