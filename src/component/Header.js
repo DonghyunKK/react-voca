@@ -7,12 +7,12 @@ function Header () {
         <Link to="/">English Vocabulary</Link>
       </h1>
       <div className="menu">
-        <a href="#x" className="link">
-          Add word
-        </a>
-        <a href="#x" className="link">
+        <Link to="/create_word" className="link">
+          Add Word
+        </Link>
+        <Link to="/create_day" className="link">
           Add Day
-        </a>
+        </Link>
       </div>
     </div>
   )
