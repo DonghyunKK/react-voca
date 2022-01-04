@@ -49,6 +49,17 @@ a {
   border-radius: 4px;
 }
 
+.dayContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dayContainer .link {
+  padding: 10px;
+  font-weight: bold;
+}
+
 .list_day {
   display: flex;
   flex-wrap: wrap;
